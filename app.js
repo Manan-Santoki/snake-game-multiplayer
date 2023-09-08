@@ -7,7 +7,7 @@ var middleware = require('socketio-wildcard')();
 //---------- Server settings ----------
 const MAX_NAME_LENGTH = 16;
 const fps = 5;
-
+const port = 83;
 const MAP_WIDTH = 500;
 const MAP_HEIGHT = 500;
 
@@ -29,10 +29,10 @@ app.get('/config', function (req, res) {
 });
 app.use('/client', express.static(__dirname + '/client'));
 
-var port = process.env.PORT || 80;
-if (process.env.PORT == undefined) {
-	console.log(colors.blue("[Snake] No port defined using default (80)"));
-}
+//var port = process.env.PORT || 80;
+//if (process.env.PORT == undefined) {
+//	console.log(colors.blue("[Snake] No port defined using default (80)"));
+//}
 
 serv.listen(port);
 var io = require("socket.io")(serv, {});

@@ -8,6 +8,12 @@ RUN npm install
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 83
 
-CMD ["npm", "start"]
+RUN apt-get update && \
+      apt-get -y install sudo
+
+RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
+
+#RUN sudo node app.js
+CMD ["sudo", "node", "app.js"]
