@@ -22,7 +22,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy Push Image') {
+    stage('Push Image') {
       steps {
         script {
           docker.withRegistry('', registryCredential) {
@@ -31,6 +31,13 @@ pipeline {
         }
       }
     }
+    stage("Deploy") {
+            steps {
+                sh('chmod 777 deploy.sh ')
+                sh('./deploy.sh')
+	          }
+    }
+
 
   }
 }
